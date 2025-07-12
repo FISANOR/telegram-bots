@@ -1,3 +1,13 @@
+import threading
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+def run_dummy_server():
+    server_address = ("0.0.0.0", 10000)
+    httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
+    httpd.serve_forever()
+
+threading.Thread(target=run_dummy_server).start()
+
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ConversationHandler, ContextTypes
 
